@@ -4,19 +4,17 @@ const userSchema = new mongoose.Schema({
     phoneNumber: {
         type: String,
         unique: true,
-        sparse: true, // Allows nulls without violating uniqueness
+        sparse: true,
     },
     googleId: {
         type: String,
         unique: true,
-        sparse: true, // A user signing up with phone won't have this
+        sparse: true,
     },
-
-    token:{
-        type:String,
-        required:true
+    token: {
+        type: String,
+        required: false
     },
-    
     name: String,
     email: {
         type: String,
@@ -29,7 +27,8 @@ const userSchema = new mongoose.Schema({
         default: Date.now,
     },
 }, {
-    versionKey: false, // Removes the __v field from documents
+    versionKey: false,
 });
 
- export default userSchema;
+const User = mongoose.model("User", userSchema);
+export default User;
