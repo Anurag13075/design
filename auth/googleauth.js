@@ -23,6 +23,9 @@ export const googleauth = async (req, res) => {
         });
 
         const payload = ticket.getPayload();
+         console.log(payload);
+         console.log(payload.sub);
+         
 
         if (!payload) {
             return res.status(400).json({
