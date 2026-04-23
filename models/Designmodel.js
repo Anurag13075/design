@@ -6,13 +6,23 @@ const designschema = new mongoose.Schema({
         type: String,
         required: true
     },
-    design: {
-        type: Array
+    design: {    
+        type: []
     },
     id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
+
     },
+
+
+    prompt:{
+        type:[]
+    },
+
+
+
+
 
 })
 
