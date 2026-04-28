@@ -1,19 +1,26 @@
 import Design from "../models/Designmodel.js";
-
+import { generatedesign } from "../ai/openai-integrate.js";
 // Create a new design
 export const createDesign = async (req, res) => {
 
     const { design, projectId } = req.body;
 
 
+
+
     try {
 
         //calling the llm model for the actual design ;
+
+        const desing  = generatedesign();
+
         
 
         const newDesign = await Design.createDesign
-        const savedDesign = await newDesign.save();
-        res.status(201).json(savedDesign);
+        const savedDesign = await newDesign.save({
+            design
+        });
+        res.status(201).json(savedDesign, design);
     } catch (error) {
         res.status(500).json({ message: "Error creating design", projectId,  error: error.message });
     }
