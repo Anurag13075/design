@@ -2,13 +2,15 @@ import express from "express";
 import { connect } from "./db/db.js";
 import dotenv from "dotenv";
 import cors from "cors";
-
+import {limiter} from "./limmiter/rate-limit.js";
 dotenv.config();
 
 import googleRoutes from "./routes/googleroute.js";
 import designRoutes from "./routes/designroute.js";
 
 const app = express();
+app.use(limiter);
+
 
 app.use(express.json());
 app.use(cors());
